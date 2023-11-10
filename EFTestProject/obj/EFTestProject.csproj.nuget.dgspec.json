@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rylen\\source\\repos\\EFTestProject\\EFTestProject\\EFTestProject.csproj": {}
+    "C:\\Users\\rylen\\source\\repos\\Verra_EFProject\\EFTestProject\\EFTestProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rylen\\source\\repos\\EFTestProject\\EFTestProject\\EFTestProject.csproj": {
+    "C:\\Users\\rylen\\source\\repos\\Verra_EFProject\\EFTestProject\\EFTestProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rylen\\source\\repos\\EFTestProject\\EFTestProject\\EFTestProject.csproj",
+        "projectUniqueName": "C:\\Users\\rylen\\source\\repos\\Verra_EFProject\\EFTestProject\\EFTestProject.csproj",
         "projectName": "EFTestProject",
-        "projectPath": "C:\\Users\\rylen\\source\\repos\\EFTestProject\\EFTestProject\\EFTestProject.csproj",
+        "projectPath": "C:\\Users\\rylen\\source\\repos\\Verra_EFProject\\EFTestProject\\EFTestProject.csproj",
         "packagesPath": "C:\\Users\\rylen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rylen\\source\\repos\\EFTestProject\\EFTestProject\\obj\\",
+        "outputPath": "C:\\Users\\rylen\\source\\repos\\Verra_EFProject\\EFTestProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
