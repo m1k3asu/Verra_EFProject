@@ -22,6 +22,15 @@ namespace EFTestProject.Controllers
         [Route("AddProject")]
         public async Task<ActionResult<Project>> AddProject(ProjectDto dto)
         {
+
+            if (string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(dto.Country))
+            {
+                return new BadRequestObjectResult(new
+                {
+                    message = "Project and Country are required. Please ensure you have specified values"
+                });
+            }
+
             var retrieveProjName = _dataContext.Projects.Any(a => a.Name == dto.Name);
             var retrieveCountry = _dataContext.Addresses.Any(a => a.Country == dto.Country);
 
@@ -30,11 +39,12 @@ namespace EFTestProject.Controllers
                 Name = dto.Name
             };
 
-
             if (retrieveProjName || retrieveCountry)
             {
-                project.Name = string.Format("Unsuccessful. Project {0} or Country {1} already added. " + dto.Name, dto.Country);
-                project.Id = -1;
+                return new BadRequestObjectResult(new
+                {
+                    message = string.Format("Unsuccessful. Project {0} or Country {1} already added. " + dto.Name, dto.Country)
+                });
             }
             else
             {
@@ -59,12 +69,12 @@ namespace EFTestProject.Controllers
         }
 
         [HttpGet]
-        [Route("GetCountries")]
+        [Route("GetProjects")]
 
         // Using Action Result here insead of the IActionResult Inface so I can see the results in the swagger UI
-        public async Task<ActionResult<List<Address>>> GetCountries()
+        public async Task<ActionResult<List<Project>>> GetProjects()
         {
-            var toReturn = await _dataContext.Addresses.ToListAsync();
+            var toReturn = await _dataContext.Projects.ToListAsync();
             return Ok(toReturn);
         }
 
@@ -91,12 +101,15 @@ namespace EFTestProject.Controllers
             projectList.ForEach(pl =>
             {
                 var country = narrowedAddressList.Where(w => w.ProjectId == pl.Id).Select(s => s.Country).FirstOrDefault();
-                var dto = new ProjectDto()
+                if (country != null)
                 {
-                    Name = pl.Name,
-                    Country = country
-                };
-                toReturn.Add(dto);
+                    var dto = new ProjectDto()
+                    {
+                        Name = pl.Name,
+                        Country = country
+                    };
+                    toReturn.Add(dto);
+                }                
             });
 
             return Ok(toReturn);
