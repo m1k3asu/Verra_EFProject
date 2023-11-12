@@ -32,18 +32,17 @@ namespace EFTestProject.Controllers
             }
 
             var retrieveProjName = _dataContext.Projects.Any(a => a.Name == dto.Name);
-            var retrieveCountry = _dataContext.Addresses.Any(a => a.Country == dto.Country);
-
+            
             var project = new Project()
             {
                 Name = dto.Name
             };
 
-            if (retrieveProjName || retrieveCountry)
+            if (retrieveProjName)
             {
                 return new BadRequestObjectResult(new
                 {
-                    message = string.Format("Unsuccessful. Project {0} or Country {1} already added. " + dto.Name, dto.Country)
+                    message = string.Format("Unsuccessful. Project {0} already added. " + dto.Name)
                 });
             }
             else
@@ -89,8 +88,8 @@ namespace EFTestProject.Controllers
 
         [HttpGet]
         // Using Action Result here insead of the IActionResult Inface so I can see the results in the swagger UI
-        [Route("GetRegisterList")]
-        public async Task<ActionResult<List<ProjectDto>>> GetRegisterList()
+        [Route("GetRegisteredList")]
+        public async Task<ActionResult<List<ProjectDto>>> GetRegisteredList()
         {
             var toReturn = new List<ProjectDto>();
 
